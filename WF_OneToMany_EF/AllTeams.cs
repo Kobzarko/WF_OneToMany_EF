@@ -57,7 +57,8 @@ namespace WF_OneToMany_EF
 
 
         #endregion
-
+        // благодаря lazy loading мы можем получить 
+        // связанных с командой игроков и загрузить их
         #region просмотр списка игроков команды
 
         private void button4_Click(object sender, EventArgs e)
@@ -73,11 +74,83 @@ namespace WF_OneToMany_EF
                 {
                     return;
                 }
+                // поиск команды в базе данных
+                Team team = db.Teams.Find(id);
+                // вкладываем в listbox список игроков
+                listBox1.DataSource = team.Players.ToList();
+                // отображаем имена
+                listBox1.DisplayMember = "Name";
+
             }
         }
 
         #endregion
 
+        // при удалении мы предварительно очищаем данный список: team.Players.Clear();
+        #region Удаление
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int index = dataGridView1.SelectedRows[0].Index;
+            int id = 0;
+            // возвращает значение указывающее успешно ли выполнено преобразование
+            bool converted = Int32.TryParse(dataGridView1[0, index].Value.ToString(), out id);
+
+            if (converted == false)
+            {
+                return;
+            }
+
+            Team team = db.Teams.Find(id);
+            // удалить все элементы коллекции из команды
+            team.Players.Clear();
+            // удалить команду
+            db.Teams.Remove(team);
+            // сохранить изменения в бд
+            db.SaveChanges();
+
+            MessageBox.Show("Объект удален");
+        }
+
+        #endregion
+
+        #region редактирование
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int index = dataGridView1.SelectedRows[0].Index;
+            bool converted = Int32.TryParse(dataGridView1[0, index].Value.ToString(), out int id);
+
+            if (converted == false)
+            {
+                return;
+            }
+            // поиск команды
+            Team team = db.Teams.Find(id);
+            // создаем новую форму присваиваем поля
+            TeamForm teamForm = new TeamForm();
+            teamForm.textBox1.Text = team.Name;
+            teamForm.textBox3.Text = team.Coach;
+
+            // выводим значение в форме
+            DialogResult dialogResult = teamForm.ShowDialog(this);
+            if (dialogResult == DialogResult.Cancel)
+            {
+                return;
+            }
+            // присваиваем новое значение
+            team.Name = teamForm.textBox1.Text;
+            team.Coach = teamForm.textBox3.Text;
+            // сохраняем
+            db.Entry(team).State = EntityState.Modified;
+            db.SaveChanges();
+            // сообщаем
+            MessageBox.Show("Запись обновлена");
+
+
+        }
+
+        #endregion
 
 
 
@@ -86,6 +159,6 @@ namespace WF_OneToMany_EF
 
         }
 
-       
+      
     }
 }

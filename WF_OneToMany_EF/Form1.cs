@@ -54,6 +54,7 @@ namespace WF_OneToMany_EF
             // добавляем имя 
             player.Name = plForm.textBox1.Text;
             // выбираем позицию игрока 
+            // добавить позиции в поле
             player.Position = plForm.comboBox1.SelectedItem.ToString();
             // добавляем игрока в БД
             db.Players.Add(player);
