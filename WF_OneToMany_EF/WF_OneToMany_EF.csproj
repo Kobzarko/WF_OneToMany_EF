@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SoccerContextInitializer.cs" />
     <Compile Include="TeamForm.cs">
       <SubType>Form</SubType>
     </Compile>

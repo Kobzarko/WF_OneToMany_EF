@@ -21,7 +21,7 @@ namespace WF_OneToMany_EF
         {
             InitializeComponent();
 
-            db = db = new SoccerContext();
+            db = new SoccerContext();
             db.Players.Load();
             dataGridView1.DataSource = db.Players.Local.ToBindingList();
 

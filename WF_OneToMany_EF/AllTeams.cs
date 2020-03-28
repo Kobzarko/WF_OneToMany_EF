@@ -72,6 +72,7 @@ namespace WF_OneToMany_EF
 
                 if (converted == false)
                 {
+                    MessageBox.Show("список пуст");
                     return;
                 }
                 // поиск команды в базе данных
@@ -79,7 +80,7 @@ namespace WF_OneToMany_EF
                 // вкладываем в listbox список игроков
                 listBox1.DataSource = team.Players.ToList();
                 // отображаем имена
-                listBox1.DisplayMember = "Name";
+                listBox1.DisplayMember = "name";
 
             }
         }
@@ -119,7 +120,8 @@ namespace WF_OneToMany_EF
         private void button2_Click(object sender, EventArgs e)
         {
             int index = dataGridView1.SelectedRows[0].Index;
-            bool converted = Int32.TryParse(dataGridView1[0, index].Value.ToString(), out int id);
+            int id = 0;
+            bool converted = Int32.TryParse(dataGridView1[0, index].Value.ToString(), out id);
 
             if (converted == false)
             {

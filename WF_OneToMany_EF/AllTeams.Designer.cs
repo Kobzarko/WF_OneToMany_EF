@@ -30,18 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.coachDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.coachDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.teamBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.playerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -55,15 +57,44 @@
             this.dataGridView1.DataSource = this.teamBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(29, 40);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(428, 275);
+            this.dataGridView1.Size = new System.Drawing.Size(528, 275);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Название";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // coachDataGridViewTextBoxColumn
+            // 
+            this.coachDataGridViewTextBoxColumn.DataPropertyName = "Coach";
+            this.coachDataGridViewTextBoxColumn.HeaderText = "Тренер";
+            this.coachDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.coachDataGridViewTextBoxColumn.Name = "coachDataGridViewTextBoxColumn";
+            this.coachDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // teamBindingSource
+            // 
+            this.teamBindingSource.DataSource = typeof(WF_OneToMany_EF.Models.Team);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(519, 40);
+            this.label1.Location = new System.Drawing.Point(580, 40);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 17);
             this.label1.TabIndex = 1;
@@ -113,38 +144,14 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(522, 71);
+            this.listBox1.Location = new System.Drawing.Point(580, 71);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(251, 244);
+            this.listBox1.Size = new System.Drawing.Size(193, 244);
             this.listBox1.TabIndex = 3;
             // 
-            // idDataGridViewTextBoxColumn
+            // playerBindingSource
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Название";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // coachDataGridViewTextBoxColumn
-            // 
-            this.coachDataGridViewTextBoxColumn.DataPropertyName = "Coach";
-            this.coachDataGridViewTextBoxColumn.HeaderText = "Тренер";
-            this.coachDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.coachDataGridViewTextBoxColumn.Name = "coachDataGridViewTextBoxColumn";
-            this.coachDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // teamBindingSource
-            // 
-            this.teamBindingSource.DataSource = typeof(WF_OneToMany_EF.Models.Team);
+            this.playerBindingSource.DataSource = typeof(WF_OneToMany_EF.Models.Player);
             // 
             // AllTeams
             // 
@@ -163,6 +170,7 @@
             this.Load += new System.EventHandler(this.AllTeams_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.teamBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,5 +189,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn coachDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource teamBindingSource;
         protected internal System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.BindingSource playerBindingSource;
     }
 }

@@ -9,6 +9,11 @@ namespace WF_OneToMany_EF.Models
 {
     class SoccerContext:DbContext
     {
+        static SoccerContext()
+        {
+            Database.SetInitializer(new SoccerContextInitializer());
+        }
+
         public SoccerContext():base("SoccerDb")
         {
 
